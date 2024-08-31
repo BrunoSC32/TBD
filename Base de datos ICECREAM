@@ -1,0 +1,82 @@
+CREATE TABLE Ingredientes (
+    id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    Nombre VARCHAR(30) UNIQUE NOT NULL,
+    descripcion VARCHAR(255) NULL,
+    id_proveedor INT,
+    Tipo_unidad VARCHAR(15) NOT NULL,
+    precio FLOAT NOT NULL,
+    cantidad_stock FLOAT(5,2) NOT NULL,
+    stock_minimo INT NOT NULL
+);
+
+CREATE TABLE Clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    nit VARCHAR(12) NULL DEFAULT '0',
+    id_persona INT NOT NULL
+);
+
+CREATE TABLE Personas (
+    id_persona INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    nombre_persona VARCHAR(100) NOT NULL,
+    apellido_persona VARCHAR(100) NOT NULL,
+    carnet VARCHAR(20) NULL,
+    telefono_persona VARCHAR(20) NULL
+);
+
+CREATE TABLE Trabajadores (
+    id_trabajador INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    Rol CHAR(1) NOT NULL,
+    experiencia_trabajador INT DEFAULT 0,
+    fecha_nacimiento DATE NOT NULL,
+    salario_mensual FLOAT NOT NULL
+);
+
+CREATE TABLE Proveedores (
+    id_proveedor INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    nombre_empresa VARCHAR(55) NOT NULL,
+    contacto INT NOT NULL,
+    telefono_proveedor VARCHAR(15) NOT NULL,
+    email_proveedor VARCHAR(55) NOT NULL,
+    direccion_proveedor VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Pedidos_proveedor (
+    id_pedido_proveedor INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    proveedor_id INT NOT NULL,
+    fecha_pedido_proveedor DATE NOT NULL,
+    fecha_recibido_proveedor DATE,
+    estado VARCHAR(50) NOT NULL,
+    monto_total DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE categorias_productos (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    nombre_categorias VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE Productos_menu (
+    id_productos INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    nombre_producto VARCHAR(100) NOT NULL,
+    descripcion_producto TEXT NOT NULL,
+    id_categoria INT,
+    precio_producto DECIMAL(4, 2) NOT NULL,
+    imagen_producto VARCHAR(255),
+    requiere_preparacion BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE Pedidos_cliente (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    id_cliente INT NOT NULL,
+    id_trabajador INT,
+    fecha_pedido DATE NOT NULL,
+    estado_pedido BOOLEAN NOT NULL
+);
+
+CREATE TABLE detalles_pedido (
+    id_detalle_pedido INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    id_pedido INT NOT NULL,
+    id_producto_menu INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_total DECIMAL(10, 2) NOT NULL,
+    modificacion VARCHAR(255) NULL
+);
