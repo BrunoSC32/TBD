@@ -330,6 +330,21 @@ CREATE TABLE `unidades_medida` (
   `abreviatura_medida` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unidades_medida`
+--
+
+CREATE TABLE 'telefonos_persona' (
+    id_telefono int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_persona int(11),
+    telefono varchar(20) DEFAULT NULL,
+    FOREIGN KEY (id_persona) REFERENCES personas(id_persona)
+);
+ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+
 --
 -- Indexes for dumped tables
 --
